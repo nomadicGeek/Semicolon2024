@@ -1,0 +1,24 @@
+.dropzone {
+    border: 2px dashed #0087F7;
+    border-radius: 10px;
+    background: white;
+    margin: auto;
+    width: 80%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #0087F7;
+}
+.dropzone .dz-message {
+    text-align: center;
+}
+.dz-preview {
+    margin: 16px;
+    display: inline-block;
+}
+.dz-preview .dz-image {
+    border-radius: 10px;
+    overflow: hidden;
+}

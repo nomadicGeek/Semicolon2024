@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      text="text/css"
+      href="{% static 'tailwind_auto.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <title>Semicolon</title>
+  </head>
+  <body class="h-[100vh] overflow-hidden flex flex-col justify-between">
+    <header class="flex justify-between items-center h-16 px-2">
+      <section>
+        <h1 class="font-bold px-4 text-4xl">
+          Semi<span class="text-gray-500">colon</span>
+        </h1>
+      </section>
+      <nav>
+        <ul class="flex text-gray-500">
+          <li class="px-4">
+            <a
+              class="text-decoration-none cursor-pointer hover:text-black"
+              href="#"
+              >Home</a
+            >
+          </li>
+          <li class="px-4">
+            <a
+              class="text-decoration-none cursor-pointer hover:text-black"
+              href="#about"
+              >About</a
+            >
+          </li>
+          <li class="px-4">
+            <a
+              class="text-decoration-none cursor-pointer hover:text-black"
+              href="#services"
+              >Services</a
+            >
+          </li>
+          <li class="px-4">
+            <a
+              class="text-decoration-none cursor-pointer hover:text-black"
+              href="#contact"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="max-h-[80%]">
+      <section class="flex flex-row justify-evenly mx-24 mt-6">
+        <div class="py-5 text-left leading-snug flex flex-col">
+          <h1 class="text-[28px] text-slate-500">Welcome to</h1>
+          <h1 class="text-[#293241] text-[80px] font-extrabold">Emotion Prediction with EEG Signals</h1>
+          <p class="text-[18px] w-[485px] text-slate-500 mt-4"> Are you curious about how your brain activity correlates with your
+            emotions? Welcome to our innovative platform where we delve into the
+            fascinating world of EEG signals to predict human emotions.</p>
+
+          <p class="mt-20 text-gray-600">Begin by Uploading Your CSV File to Get Started.</p>
+          <form class="bg-[#f9fafd] w-[520px] h-16 border-[1px] p-2 mt-2 rounded-2xl flex items-center justify-between" id="csv-upload" action="/upload" method="post" enctype="multipart/form-data">
+            <label for="csvFile" id="file-label" class="flex items-center justify-center m-0 w-[60%] h-full bg-white border-[1px] border-gray-300 rounded-2xl cursor-pointer">
+              <span id="file-label-text" class="mr-2">Choose File</span>
+              <input id="csvFile" class="hidden" type="file" name="csvFile" accept=".csv" required />
+          </label>
+          <button class="bg-[#a1316b] text-white h-full w-[35%] rounded-2xl ml-2" type="submit">Submit</button>
+          </form>
+          
+        </div>
+          <img
+            class="max-w-94 max-h-94 object-cover items-center rounded w-1/2"
+            src="{% static 'images/home_image.jpg' %}"/>
+      </section>
+    </main>
+
+
+    <footer class="flex items-center justify-between py-4 px-12 text-slate-400">
+      <ul class="flex items-center space-x-4"> 
+          <li><a href="mailto:info@medifate.com">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+      </ul>
+      <div class="h-6 w-[55%] flex items-center">
+          <hr class="flex-grow border-t border-slate-400">
+      </div>
+      <p>&copy; Semicolon, 2024</p>
+  </footer>
+  </body>
+</html>
+<script>
+  document.getElementById('csvFile').addEventListener('change', function(e) {
+      var fileName = e.target.files[0].name;
+      document.getElementById('file-label-text').innerText = fileName;
+  });
+</script>

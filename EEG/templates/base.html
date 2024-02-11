@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Prediction Dashboard</title>
+    <link
+      rel="stylesheet"
+      text="text/css"
+      href="{% static 'tailwind_auto.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Emotion Prediction Dashboard</h1>
+        <div class="parameters">
+            <h2>Emotion Scores</h2>
+            <ul id="emotion-scores">
+                <!-- Scores will be populated dynamically -->
+            </ul>
+            <h2>Confidence Levels</h2>
+            <ul id="confidence-levels">
+                <!-- Confidence levels will be populated dynamically -->
+            </ul>
+            <h2>Timestamps</h2>
+            <ul id="timestamps">
+                <!-- Timestamps will be populated dynamically -->
+            </ul>
+        </div>
+        <div class="graph-container">
+            <h2>Emotion Prediction Graph</h2>
+            <canvas id="emotion-graph"></canvas>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    h1, h2 {
+        margin-bottom: 10px;
+    }
+    
+    .parameters {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    ul li {
+        margin-bottom: 10px;
+    }
+    
+    .graph-container {
+        margin-top: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+
+
+    
+</style>
+
+<script>
+
+
+</script>
