@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" text="text/css" href="{% static 'tailwind_auto.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <title>HackHive</title>
+  </head>
+  <body class="m-3">
+    <header class="flex flex-row items-center">
+        <img class="h-[90px] w-[190px]" src="{% static 'images/hackhive.png' %}"/>
+    </header>
+    <main>
+      <section class=""> 
+        <div>
+          <h1 class="text-5xl font-bold text-center mt-16">Emotion Prediction with EEG Signals</h1>
+            <img class="mt-4" src="{% static 'images/hero.jpg' %}"/>
+          <p class="font-light text-center my-7 text-[20px]">Upload CSV File for Emotion Prediction</p>
+          <form  class="flex flex-col items-center" id="csv-upload" action="/upload" method="post" enctype="multipart/form-data">
+            <label for="csvFile" id="file-label" class="flex justify-center items-center m-0 w-[80%] h-10 bg-[#F3F1F0] border-[1px] border-black rounded-[0.7rem] cursor-pointer font-bold">
+              <span id="file-label-text" class="mr-2 text-[20px] text-black">Choose File</span>
+              <input id="csvFile" class="hidden" type="file" name="csvFile" accept=".csv" required />
+          </label>
+          <button class="flex justify-center items-center mt-3 w-[80%] h-10 bg-[#F3BA92] border-[1px] border-[#F3BA92] rounded-[0.7rem] cursor-pointer font-bold text-[20px] text-white"  type="submit">Submit</button>
+          </form>
+        </div>
+      </section>
+
+      <!--sad women and problem statment section-->
+      <section>
+        <a>
+          <img class="mt-4" src="{% static 'images/sad_women.jpg' %}"/>
+        </a>
+          <div>
+          <h1 class="text-4xl font-bold text-center mt-16">Problem Statement</h1>
+          <p class="font-light text-center my-2 text-[20px]">Identification of wellness factors through Brain Signals using GenAI.</p>
+        </div>
+        <div>
+          <h1 class="text-4xl font-bold text-center mt-7">Description</h1>
+          <p class="font-light text-center my-2 text-[20px]">In today’s fast paced lifestyle, stress is major factor to deal with. If corrective measures is not taken in time, it could lead to adverse situation. Brain signals are the origin of thoughts and as data points is appropriate way for analysis.</p>
+        </div>  
+        </section>
+
+        <!--Meet out team section-->
+        <section>
+
+        </section>
+
+        <!---proposed solution and business value-->
+        <section>
+          
+            <div>
+            <h1 class="text-4xl font-bold text-center mt-16">Proposed Solution</h1>
+            <p class="font-light text-center my-2 text-[20px]">Analyse EEG signals with 32 channels on frontal, occipital, temporal lobes. Derive Delta, Theta, Alpha, Beta and Gamma waves out of signals. Correlate the variations of waves generated as per literature available. Identify the mental wellness.
+              </p>
+          </div>
+          <div>
+            <h1 class="text-4xl font-bold text-center mt-7">Business Value</h1>
+            <p class="font-light text-center my-2 text-[20px]">For any organisation where human resources are working. It has potential to deal with all age groups. Its proactive measure to prevent person from adverse situations.</p>
+          </div>  
+          <a>
+            <img class="mt-4" src="{% static 'images/women.jpg' %}"/>
+          </a>
+          </section>
+
+          <!---Frequently asked questions-->
+          <section>
+            
+          </section>
+    </main>
+  </body>
+</html>
+<script>
+  document.getElementById('csvFile').addEventListener('change', function(e) {
+      var fileName = e.target.files[0].name;
+      document.getElementById('file-label-text').innerText = fileName;
+  });
+</script>
+<style>
+
+</style>
