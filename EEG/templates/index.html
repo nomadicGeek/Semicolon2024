@@ -68,13 +68,17 @@
             fascinating world of EEG signals to predict human emotions.</p>
 
           <p class="mt-20 text-gray-600">Begin by Uploading Your CSV File to Get Started.</p>
-          <form class="bg-[#f9fafd] w-[520px] h-16 border-[1px] p-2 mt-2 rounded-2xl flex items-center justify-between" id="csv-upload" action="/upload" method="post" enctype="multipart/form-data">
+          
+
+          <form class="bg-[#f9fafd] w-[520px] h-16 border-[1px] p-2 mt-2 rounded-2xl flex items-center justify-between" id="csv-upload" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             <label for="csvFile" id="file-label" class="flex items-center justify-center m-0 w-[60%] h-full bg-white border-[1px] border-gray-300 rounded-2xl cursor-pointer">
-              <span id="file-label-text" class="mr-2">Choose File</span>
-              <input id="csvFile" class="hidden" type="file" name="csvFile" accept=".csv" required />
-          </label>
-          <button class="bg-[#a1316b] text-white h-full w-[35%] rounded-2xl ml-2" type="submit">Submit</button>
-          </form>
+                <span id="file-label-text" class="mr-2">Choose File</span>
+                <input id="csvFile" class="hidden" type="file" name="csvFile" accept=".csv" required />
+            </label>
+            <button type="submit">Upload</button>
+        </form>
+    
           
         </div>
           <img

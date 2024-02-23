@@ -140,3 +140,6 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_HOST_USER = 'rohitsav147@gmail.com'
+EMAIL_HOST_PASSWORD = 'ijepopljmlsgvais'
