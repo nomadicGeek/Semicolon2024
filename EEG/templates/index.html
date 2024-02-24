@@ -1,105 +1,222 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+{% extends 'base.html' %} {% block content %} {% load static %}
+<!---Mobile layout and Wen layout is ready for below section-->
+<section class=""> 
+  <div class="lg:flex lg:flex-row lg:mx-16 lg:mt-6">
+    <div class="lg:py-5  lg:text-left lg:leading-snug lg:flex lg:flex-col lg:justify-center lg:w-1/2">
+      <h1 class="hidden lg:block lg:text-[28px] lg:text-slate-500">Welcome</h1>
+      <h1 class="text-5xl font-bold text-center mt-16 lg:hidden">Emotion Prediction with EEG Signals</h1>
+      <h1 class="hidden lg:block lg:text-[80px] lg:text-left lg:font-extrabold">Emotion Prediction with EEG Signals</h1>
+      <p class="hidden lg:block lg:text-[18px] lg:w-auto lg:text-slate-500 lg:mt-4"> Are you curious about how your brain activity correlates with your emotions? Welcome to our innovative platform where we delve into the fascinating world of EEG signals to predict human emotions.</p>
+      <img class="mt-4 lg:hidden" src="{% static 'images/hero.jpg' %}"/>
+      <p class="font-light text-center my-7 text-[20px] lg:hidden">Upload CSV File for Emotion Prediction</p>
+      <p class="hidden lg:block lg:font-light lg:text-left lg:my-7 lg:text-[20px] ">Upload CSV File for Emotion Prediction</p>
+      <!-- Here is the Upload Functionality Code.-->
+      <form  class="flex flex-col items-center lg:bg-[#f9fafd] lg:w-[80%] lg:h-16 lg:border-[1px] lg:p-2 lg:mt-2 lg:rounded-2xl lg:flex-row lg:items-center lg:justify-between" id="csv-upload" action="/upload" method="post" enctype="multipart/form-data">
+        <label for="csvFile" id="file-label" class="flex justify-center items-center w-[80%] h-10 bg-[#F3F1F0] border-[1px] border-black rounded-[0.7rem] cursor-pointer font-bold lg:mr-4 lg:mb-0">
+          <span id="file-label-text" class="mr-2 text-[20px] text-black">Choose File</span>
+          <input id="csvFile" class="hidden" type="file" name="csvFile" accept=".csv" required />
+        </label>
+        <button class="flex justify-center items-center w-[80%] h-10 bg-[#F3BA92] border-[1px] border-[#F3BA92] rounded-[0.7rem] cursor-pointer font-bold text-[20px] text-white mt-3 lg:hidden"  type="submit">Submit</button>
+        <button class="hidden lg:flex justify-center items-center w-[80%] h-10 bg-[#F3BA92] border-[1px] border-[#F3BA92] rounded-[0.7rem] cursor-pointer font-bold text-[20px] text-white lg:w-[40%] "  type="submit">Submit</button>
+      </form>
+    </div>
+    <img class="hidden mt-4 lg:block lg:object-cover lg:items-center lg:rounded lg:w-1/2 lg:h-[700px]" src="{% static 'images/hero.jpg' %}"/>
+  </div>
+</section>
 
-    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      text="text/css"
-      href="{% static 'tailwind_auto.css' %}"
-    />
-    <link rel="stylesheet" href="{% static 'styles.css' %}" />
-    <title>Semicolon</title>
-  </head>
-  <body class="h-[100vh] overflow-hidden flex flex-col justify-between">
-    <header class="flex justify-between items-center h-16 px-2">
-      <section>
-        <h1 class="font-bold px-4 text-4xl">
-          Semi<span class="text-gray-500">colon</span>
-        </h1>
-      </section>
-      <nav>
-        <ul class="flex text-gray-500">
-          <li class="px-4">
-            <a
-              class="text-decoration-none cursor-pointer hover:text-black"
-              href="#"
-              >Home</a
-            >
-          </li>
-          <li class="px-4">
-            <a
-              class="text-decoration-none cursor-pointer hover:text-black"
-              href="#about"
-              >About</a
-            >
-          </li>
-          <li class="px-4">
-            <a
-              class="text-decoration-none cursor-pointer hover:text-black"
-              href="#services"
-              >Services</a
-            >
-          </li>
-          <li class="px-4">
-            <a
-              class="text-decoration-none cursor-pointer hover:text-black"
-              href="#contact"
-              >Contact</a
-            >
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <main class="max-h-[80%]">
-      <section class="flex flex-row justify-evenly mx-24 mt-6">
-        <div class="py-5 text-left leading-snug flex flex-col">
-          <h1 class="text-[28px] text-slate-500">Welcome to</h1>
-          <h1 class="text-[#293241] text-[80px] font-extrabold">Emotion Prediction with EEG Signals</h1>
-          <p class="text-[18px] w-[485px] text-slate-500 mt-4"> Are you curious about how your brain activity correlates with your
-            emotions? Welcome to our innovative platform where we delve into the
-            fascinating world of EEG signals to predict human emotions.</p>
 
-          <p class="mt-20 text-gray-600">Begin by Uploading Your CSV File to Get Started.</p>
-          <form class="bg-[#f9fafd] w-[520px] h-16 border-[1px] p-2 mt-2 rounded-2xl flex items-center justify-between" id="csv-upload" action="/upload" method="post" enctype="multipart/form-data">
-            <label for="csvFile" id="file-label" class="flex items-center justify-center m-0 w-[60%] h-full bg-white border-[1px] border-gray-300 rounded-2xl cursor-pointer">
-              <span id="file-label-text" class="mr-2">Choose File</span>
-              <input id="csvFile" class="hidden" type="file" name="csvFile" accept=".csv" required />
-          </label>
-          <button class="bg-[#a1316b] text-white h-full w-[35%] rounded-2xl ml-2" type="submit">Submit</button>
-          </form>
-          
+
+      <!--sad women and problem statment section-->
+      <section class="lg:hidden">
+        <img class="mt-4" src="{% static 'images/sad_women.jpg' %}"/>
+        <div>
+          <h1 class="text-5xl font-bold text-center mt-16">Problem Statement</h1>
+          <p class="font-light text-center my-2 text-[20px]">Identification of wellness factors through Brain Signals using GenAI.</p>
         </div>
-          <img
-            class="max-w-94 max-h-94 object-cover items-center rounded w-1/2"
-            src="{% static 'images/home_image.jpg' %}"/>
-      </section>
-    </main>
+        <div>
+          <h1 class="text-5xl font-bold text-center mt-7">Description</h1>
+          <p class="font-light text-center my-2 text-[20px]">In today’s fast paced lifestyle, stress is major factor to deal with. If corrective measures is not taken in time, it could lead to adverse situation. Brain signals are the origin of thoughts and as data points is appropriate way for analysis.</p>
+        </div>  
+        </section>
 
 
-    <footer class="flex items-center justify-between py-4 px-12 text-slate-400">
-      <ul class="flex items-center space-x-4"> 
-          <li><a href="mailto:info@medifate.com">Contact Us</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-      </ul>
-      <div class="h-6 w-[55%] flex items-center">
-          <hr class="flex-grow border-t border-slate-400">
-      </div>
-      <p>&copy; Semicolon, 2024</p>
-  </footer>
-  </body>
-</html>
-<script>
-  document.getElementById('csvFile').addEventListener('change', function(e) {
-      var fileName = e.target.files[0].name;
-      document.getElementById('file-label-text').innerText = fileName;
-  });
-</script>
+        <!--Web Layout-->
+        <section class="hidden lg:flex lg:flex-row">
+          <img class="lg:mt-4 lg:block lg:object-fill lg:items-center lg:rounded lg:w-[48%] lg:h-[650px]" src="{% static 'images/sad_women.jpg' %}"/>
+          <div class="lg:flex lg:flex-col lg:justify-between">
+            <div class="">
+              <h1 class="text-5xl font-bold text-left mt-16">Problem Statement</h1>
+              <p class="font-light text-left my-2 text-[20px]">Identification of wellness factors through Brain Signals using GenAI.</p>
+            </div>
+            <div class="lg:flex lg:flex-row p-2"> 
+              <div class="mr-2">
+                <h1 class="text-5xl font-bold text-center mt-10">Description</h1>
+                <p class="font-light text-center my-2 text-[20px]">In today’s fast paced lifestyle, stress is major factor to deal with. If corrective measures is not taken in time, it could lead to adverse situation. Brain signals are the origin of thoughts and as data points is appropriate way for analysis.</p>
+              </div> 
+              <div class="ml-2">
+                <h1 class="text-5xl font-bold text-center mt-10">Proposed Solution</h1>
+                <p class="font-light text-center my-2 text-[20px]">Analyse EEG signals with 32 channels on frontal, occipital, temporal lobes. Derive Delta, Theta, Alpha, Beta and Gamma waves out of signals. Correlate the variations of waves generated as per literature available. Identify the mental wellness.
+                </p>
+              </div>
+            </div>
+              <div>
+                <h1 class="text-5xl font-bold text-left mt-7">Business Value</h1>
+                <p class="font-light text-left my-2 text-[20px]">For any organisation where human resources are working. It has potential to deal with all age groups. Its proactive measure to prevent person from adverse situations.</p>
+              </div>  
+          </div> 
+          </section>
+
+        <!--Meet out team section-->
+        <section>
+
+        </section>
+
+        <!---proposed solution and business value-->
+        <section class="lg:hidden">
+            <div>
+            <h1 class="text-5xl font-bold text-center mt-16">Proposed Solution</h1>
+            <p class="font-light text-center my-2 text-[20px]">Analyse EEG signals with 32 channels on frontal, occipital, temporal lobes. Derive Delta, Theta, Alpha, Beta and Gamma waves out of signals. Correlate the variations of waves generated as per literature available. Identify the mental wellness.
+              </p>
+          </div>
+          <div>
+            <h1 class="text-5xl font-bold text-center mt-7">Business Value</h1>
+            <p class="font-light text-center my-2 text-[20px]">For any organisation where human resources are working. It has potential to deal with all age groups. Its proactive measure to prevent person from adverse situations.</p>
+          </div>  
+            <img class="mt-4" src="{% static 'images/women.jpg' %}"/>
+          </section>
+
+          <!---Frequently asked questions-->
+          <section class="lg:hidden">
+            <div class="max-w-screen-xl mx-auto px-5 bg-white min-h-sceen">
+              <div class="flex flex-col items-center">
+                <h2 class="font-bold text-5xl mt-5 tracking-tight">
+                  FAQ
+                </h2>
+                <p class="text-neutral-500 text-xl mt-3">
+                  Frequenty asked questions
+                </p>
+              </div>
+              <div class="grid divide-y divide-neutral-200 max-w-xl mx-auto mt-8">
+                <div class="py-3">
+                  <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                      <span> What is a SAAS platform?</span>
+                      <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                          </span>
+                    </summary>
+                    <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                       SAAS platform is a cloud-based software service that allows users to access
+                      and use a variety of tools and functionality.
+                    </p>
+                  </details>
+                </div>
+                <div class="py-3">
+                  <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                      <span> How does  billing work?</span>
+                      <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                          </span>
+                    </summary>
+                    <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                      We offers a variety of billing options, including monthly and annual subscription plans,
+                      as well as pay-as-you-go pricing for certain services. Payment is typically made through a credit
+                      card or other secure online payment method.
+                    </p>
+                  </details>
+                </div>
+                <div class="py-3">
+                  <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                      <span> Can I get a refund for my subscription?</span>
+                      <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                          </span>
+                    </summary>
+                    <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                      We offers a 30-day money-back guarantee for most of its subscription plans. If you are not
+                      satisfied with your subscription within the first 30 days, you can request a full refund. Refunds
+                      for subscriptions that have been active for longer than 30 days may be considered on a case-by-case
+                      basis.
+                    </p>
+                  </details>
+                </div>
+              </div>
+            </div>
+            
+          </section>
+
+
+
+          <!---FAQ for Mobile-->
+          <section class="hidden lg:flex lg:flex-row ">
+            <div class="mx-auto px-5 bg-white w-[50%]">
+              <div class="flex flex-col items-center">
+                <h2 class="font-bold text-5xl mt-5 tracking-tight">
+                  FAQ
+                </h2>
+                <p class="text-neutral-500 text-xl mt-3">
+                  Frequenty asked questions
+                </p>
+              </div>
+
+              <div class="grid divide-y divide-neutral-200 w-2xl mt-8">
+                <div class="py-3">
+                  <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                      <span> What is a SAAS platform?</span>
+                      <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                          </span>
+                    </summary>
+                    <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                       SAAS platform is a cloud-based software service that allows users to access
+                      and use a variety of tools and functionality.
+                    </p>
+                  </details>
+                </div>
+                <div class="py-3">
+                  <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                      <span> How does  billing work?</span>
+                      <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                          </span>
+                    </summary>
+                    <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                      We offers a variety of billing options, including monthly and annual subscription plans,
+                      as well as pay-as-you-go pricing for certain services. Payment is typically made through a credit
+                      card or other secure online payment method.
+                    </p>
+                  </details>
+                </div>
+                <div class="py-3">
+                  <details class="group">
+                    <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                      <span> Can I get a refund for my subscription?</span>
+                      <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                          </span>
+                    </summary>
+                    <p class="text-neutral-600 mt-3 group-open:animate-fadeIn">
+                      We offers a 30-day money-back guarantee for most of its subscription plans. If you are not
+                      satisfied with your subscription within the first 30 days, you can request a full refund. Refunds
+                      for subscriptions that have been active for longer than 30 days may be considered on a case-by-case
+                      basis.
+                    </p>
+                  </details>
+                </div>
+              </div>
+            </div>
+            <div>
+              <img class=" h-[500px]" src="{% static 'images/women.jpg' %}"/>
+            </div>
+          </section>
+{% endblock content %}

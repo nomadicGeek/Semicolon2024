@@ -45,4 +45,22 @@ def eeg_view(request):
 
 
 def index(request):
-    return render(request, 'mobile.html')
+    return render(request, 'index.html')
+# views.py
+from django.http import HttpResponse
+
+def input_form(request):
+    return render(request, 'input_form.html')
+
+def process_input(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        age = request.POST.get('age')
+        gender = request.POST.get('gender')
+        email = request.POST.get('email')
+        
+        # Print the input values
+        print(f"Name: {name}, Age: {age}, Gender: {gender}, Email: {email}")
+        return HttpResponse("Input received successfully.")
+    else:
+        return HttpResponse("Invalid request method.")

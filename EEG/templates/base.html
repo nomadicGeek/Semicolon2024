@@ -6,74 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      text="text/css"
-      href="{% static 'tailwind_auto.css' %}"
-    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" text="text/css" href="{% static 'tailwind_auto.css' %}"/>
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
-    <title>Semicolon</title>
+    <title>HackHive</title>
   </head>
-  <body >
-    <header >
-      <section>
-        <h1> Semi<span >colon</span></h1>
-      </section>
-      <nav>
-        <ul >
-          <li class="px-4">
-            <a class="text-decoration-none cursor-pointer hover:text-black" href="#" >Home</a>
-          </li>
-          <li class="px-4">
-            <a class="text-decoration-none cursor-pointer hover:text-black" href="#about" >About</a >
-          </li>
-          <li class="px-4">
-            <a class="text-decoration-none cursor-pointer hover:text-black" href="#services">Services</a>
-          </li>
-          <li class="px-4">
-            <a class="text-decoration-none cursor-pointer hover:text-black" href="#contact" >Contact</a >
-          </li>
-        </ul>
-      </nav>
+  <body class="m-3">
+    <header class="flex flex-row items-center">
+        <img class="h-[90px] w-[190px] lg:h-[100px] lg:w-[210px]" src="{% static 'images/hackhive.png' %}"/>
     </header>
     <main>
-      <section >
-        <div >
-          <h1>Welcome to</h1>
-          <h1 >Emotion Prediction with EEG Signals</h1>
-          <p> Are you curious about how your brain activity correlates with your
-            emotions? Welcome to our innovative platform where we delve into the
-            fascinating world of EEG signals to predict human emotions.</p>
-
-          <p >Begin by Uploading Your CSV File to Get Started.</p>
-          <form  id="csv-upload" action="/upload" method="post" enctype="multipart/form-data">
-            <label for="csvFile" id="file-label" class="flex items-center justify-center m-0 w-[60%] h-full bg-white border-[1px] border-gray-300 rounded-2xl cursor-pointer">
-              <span id="file-label-text" class="mr-2">Choose File</span>
-              <input id="csvFile" class="hidden" type="file" name="csvFile" accept=".csv" required />
-          </label>
-          <button  type="submit">Submit</button>
-          </form>
-        </div>
-          <img src="{% static 'images/home_image.jpg' %}"/>
-      </section>
+      {% block content %}
+      {% endblock content %}
     </main>
 
+    <!--Footer-->
+    <!-- component -->
+<footer class="bg-white dark:bg-gray-900">
+  <div class="container px-6 py-8 mx-auto">
+      <div class="flex flex-col items-center text-center">
+          <a href="#">
+              <img class="h-[90px] w-[190px]" src="{% static 'images/hackhive.png' %}" alt="">
+          </a>
 
-    <footer >
-      <ul > 
-          <li><a href="mailto:info@medifate.com">Contact Us</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-      </ul>
-      <div >
-          <hr >
+          <p class="max-w-md mx-auto mt-4 text-gray-500 dark:text-gray-400">Bringing clarity to your emotions, one prediction at a time.</p>
+        </div>
+
+      <hr class="my-10 border-gray-200 dark:border-gray-700" />
+
+      <div class="flex flex-col items-center sm:flex-row sm:justify-between">
+          <p class="text-sm text-gray-500">© Copyright 2021. All Rights Reserved.</p>
+
+          <div class="flex mt-3 -mx-2 sm:mt-0">
+              <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Teams </a>
+
+              <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Privacy </a>
+
+              <a href="#" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Cookies </a>
+          </div>
       </div>
-      <p>&copy; Semicolon, 2024</p>
-  </footer>
+  </div>
+</footer>
   </body>
 </html>
 <script>
@@ -82,3 +55,6 @@
       document.getElementById('file-label-text').innerText = fileName;
   });
 </script>
+<style>
+
+</style>
