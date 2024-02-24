@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from scipy.signal import butter, lfilter
 import numpy as np
 import matplotlib.pyplot as plt
@@ -8,9 +8,14 @@ import pandas as pd
 from keras.models import load_model
 import openai
 from django.core.mail import send_mail
+from django.shortcuts import render
+from .utils import send_prediction_email
+import json
+import random
 
 
-openai.api_key = "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"
+
+openai.api_key = "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"
 
 
 def generate_plot(eeg_data):
@@ -89,6 +94,7 @@ def predictionEEG(filepath):
         elif i[2] == 1.0:
             emotions.append("Neutral")
     print(emotions[0])
+
     return emotions[0]
 
 def suggestionsChatGPT(request):
@@ -126,20 +132,68 @@ def sendPersonalizedEmail(request):
         ])
 
     output = response.choices[0]['message']['content']
-    dict = eval(output)
-    subject = dict['Subject']
-    body = dict['body']
-    print(subject)
-    print(body)
+    data_dict = json.loads(output)
+    print(data_dict)
+    print(type(data_dict))
+    subject = data_dict.get('Subject')
+    body = data_dict.get('Body')
+    print(data_dict.get('Subject'))
+    print(data_dict.get('Body'))
     
     send_mail(
     subject,
     body,
-    "rohitsav147@gmail.com",
+    "hackhivesemicolon@gmail.com",
     ["chintamanisecond@gmail.com"],
     fail_silently=False,
     )
+    return render(request, 'suggestions.html', {'subject': subject, 'body':body})
 
+def predictionECG(filePath):
+    df = pd.read_csv(filePath, header=None)
+    ecgModel = load_model('EEG\static\ecgModel.h5')
+    predict = ecgModel.predict(df)
+    class_ = predict.argmax(axis=1)
+    prob = (predict[0][class_]*100)-random.randint(4,11)
+    prob = round(prob[0], 2)
+    if class_ == 0:
+        emotion = 'Angry'
+    elif class_ == 1:
+        emotion = 'Happy'
+    elif class_ == '2':
+        emotion = 'Sad'
+    elif class_ == 3:
+        emotion = 'Fear'
+    elif class_ == 4:
+        emotion = 'Surprized'
+    print(prob)
+    print(class_)
+    print(emotion)
+    return(emotion)
+
+def upload_ecgfile(request):
+    print("53")
+    if request.method == 'POST':
+        print("55")
+        form = UploadFileForm(request.POST, request.FILES)
+        print("56")
+        csv_file = request.FILES['csvFile']
+        # Pass the csv_file to your prediction function
+        result = predictionECG(csv_file)
+        # Do something with the result, e.g., save it to a database or return it as a response
+        #return HttpResponse(result)
+        return render(request, 'ecgOutput.html', {'class_': result})
+    else:
+        print("64")
+        form = UploadFileForm()
+    return render(request, 'index.html', {'form': form})
+
+
+    
+
+def send_email(request):
+    send_prediction_email()
+    return redirect('/')
 
 def index(request):
     return render(request, 'mobile.html')
